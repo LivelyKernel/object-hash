@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "node ./node_modules/.bin/mocha test",
-    "prepublish": "gulp dist"
+    "prepublish": "gulp dist",
+    "postinstall": "browserify node_modules/crypto-browserify/index.js -s crypto -o crypto.js"
   },
   "author": "Scott Puleo <puleos@gmail.com>",
   "license": "MIT",
@@ -45,5 +46,16 @@
   },
   "engines": {
     "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "crypto-browserify": "^3.11.0"
+  },
+  "systemjs": {
+    "map": {
+      "crypto": {
+        "node": "@node/crypto",
+        "~node": "./crypto.js"
+      }
+    }
   }
 }
